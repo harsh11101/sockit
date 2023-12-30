@@ -31,7 +31,7 @@ int main(int argc, char** argv)
 
   // send message to host
   for(int i=0;i<10000;i++){
-    client.Send("Hi! - from client" + std::to_string(i));
+    client.Send("Hi! - from client");
   }
 
   return 0;

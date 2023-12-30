@@ -1,11 +1,11 @@
 # =============================================================================================
-# PROJECT: socket-cpp
+# PROJECT: sockit
 # MODULE : Makefile
 # SUMMARY: Project build file that define build targets and steps
 # =============================================================================================
 
 # Library binary information
-LIB_NAME     = socket.cpp
+LIB_NAME     = sockit
 LIB_VER_MAJ  = 0
 LIB_VER_MIN  = 0
 LIB_VER_BLD  = 1
@@ -23,7 +23,7 @@ SRC_FILES   = $(wildcard $(LIB_SRC_DIR)/**/*.cpp) $(wildcard $(LIB_SRC_DIR)/*.cp
 OBJ_FILES   = $(patsubst %.cpp,%.o, $(SRC_FILES))
 
 # Compiler/Linker required information
-TARGET   = libsocket.cpp.so.$(LIB_VER_MAJ).$(LIB_VER_MIN).$(LIB_VER_BLD)
+TARGET   = libsockit.cpp.so.$(LIB_VER_MAJ).$(LIB_VER_MIN).$(LIB_VER_BLD)
 CXX      = g++
 CXXFLAGS = -g -I$(LIB_INC_DIR)
 LDFLAGS  = -shared -fpic

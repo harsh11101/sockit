@@ -38,7 +38,6 @@ namespace udp {
 
         // bind the address name and port number to the scoket address struct
         int bind_result = bind(_udp_server_socket_fd, (struct sockaddr *)&_udp_server_address, sizeof(_udp_server_address));
-        std::cout << "Bind: " << bind_result << std::endl;
 
         // start listening to the port
         if (bind_result != 0) {
@@ -46,7 +45,6 @@ namespace udp {
         } else {
             cout << "Start listening at port " << _port << std::endl; // For testing purposes
         }
-        int i=0;
         // forever loop for accepting messages
         while (1) {
             if (_stop_udp_server_flag) {
@@ -67,17 +65,13 @@ namespace udp {
             // put trailing characters
             _message[_message_length] = 0;
             string msg_str(_message);
-            // for(int i=0;i<100;i++){
-              respond("200", "Got your message!!"+ std::to_string(i), "Hi - from udp_server");
-          i++;
-            // }
 
             // execute OnMessage function if available
             if (_on_msg_fn_ptr != NULL) {
                 try {
                     std::string client_ip = inet_ntoa(_client_address.sin_addr);
                     Node* nd = new Node("", client_ip, "");
-                    this->_on_msg_fn_ptr(nd, msg_str);
+                    this->_on_msg_fn_ptr(this, nd, msg_str);
                 } catch (std::exception exp) {
                     std::cerr << "failed to execute [OnMessage] function";
                 }
@@ -99,7 +93,7 @@ namespace udp {
     }
 
     // Assign on message received behavior
-    void server :: OnMessage(void (*fptr)(Node*, string)) {
+    void server :: OnMessage(void (*fptr)(udp::server*,Node*,std::string)) {
         _on_msg_fn_ptr = fptr;
     }
 

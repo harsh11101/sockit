@@ -5,9 +5,10 @@
 using std::string;
 using std::cout;
 
-void print(Node *nd, string msg)
+void print(tcp::server* server, Node *nd, string msg)
 {
   cout<< nd->ip <<" : " << msg << std::endl;
+  server->respond("200", "Got your message!!", "Hi - from tcp_server");
 }
 
 int main(int argc, char** argv)

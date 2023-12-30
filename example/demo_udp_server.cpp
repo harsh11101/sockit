@@ -5,10 +5,10 @@
 using std::string;
 using std::cout;
 
-void print(Node *nd, string msg)
+void print(udp::server* server,Node *nd, string msg)
 {
-  cout<<"printing"<<std::endl;
   cout<< nd->ip <<" : " << msg << std::endl;
+  server->respond("200", "Got your message!!", "Hi - from udp_server");
 }
 
 int main(int argc, char** argv)

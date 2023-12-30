@@ -34,7 +34,7 @@ int main(int argc, char** argv)
 
   // send message to host
   for(int i=0;i<100;i++){
-    client.Send("Hi! - from client" + std::to_string(i));
+    client.Send("Hi! - from client");
     std::this_thread::sleep_for(std::chrono::milliseconds(10));
   }
 

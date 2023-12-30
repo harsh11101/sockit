@@ -89,7 +89,6 @@ int server :: Listen (){
         // put trailing characters
         _message[_message_length] = 0;
         string msg_str(_message);
-        respond("200", "Got your message!!", "Hi - from tcp_server");
 
         // execute OnMessage function if available
         if ( _on_msg_fn_ptr  != NULL)
@@ -99,7 +98,7 @@ int server :: Listen (){
             std::string client_ip = inet_ntoa(_client_address.sin_addr);
 
             Node* nd = new Node("",client_ip,"");
-            this -> _on_msg_fn_ptr(nd,msg_str);
+            this -> _on_msg_fn_ptr(this,nd,msg_str);
           }
           catch(std::exception exp)
           {
@@ -134,7 +133,7 @@ void server :: Stop()
 // ---------------------------------------------------------------------------------------------
 // Summary: Assign on message recieved behavoir
 // ---------------------------------------------------------------------------------------------
-void server :: OnMessage(void (*fptr)(Node*,string))
+void server :: OnMessage(void (*fptr)(tcp::server*,Node*,std::string))
 {
   _on_msg_fn_ptr = fptr;
   

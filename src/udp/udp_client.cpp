@@ -47,7 +47,6 @@ namespace udp{
     connect( socket_fd, (struct sockaddr *)&host_address, sizeof(host_address) );
 
     // spawn a new proceess to recieve messages
-    int a=0;
     if ((_childpid = fork()) == 0)
     {
       // wait for messages from host node
@@ -61,9 +60,8 @@ namespace udp{
 
           //put trailing character
           incoming_message[incoming_message_length] = 0;
-          a++;
           //print the message
-          cout << "message: " << incoming_message <<" "<<a<<" "<< std::endl;
+          cout << "message: " << incoming_message << std::endl;
         }
       }
 

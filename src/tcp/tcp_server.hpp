@@ -33,7 +33,7 @@ public:
   int Listen();
 
   // servre On message behavior
-  void OnMessage(void (*fptr)(Node*,string) );
+  void OnMessage(void (*fptr)(tcp::server*,Node*,std::string));
 
   void respond(const std::string& statusCode, const std::string& message, const std::string& response);
 
@@ -43,7 +43,7 @@ public:
 
 private:
 
-  void (*_on_msg_fn_ptr) (Node*,string) = NULL;
+  void (*_on_msg_fn_ptr)(tcp::server*, Node*, string) = NULL;
 
   // address structure for both server and client
   struct sockaddr_in _server_address,_client_address;

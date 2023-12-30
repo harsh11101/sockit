@@ -33,7 +33,7 @@ public:
   int Listen();
 
   // servre On message behavior
-  void OnMessage(void (*fptr)(Node*,string) );
+  void OnMessage(void (*fptr)(udp::server*,Node*,std::string));
 
   void respond(const std::string& statusCode, const std::string& message, const std::string& response);
 
@@ -43,7 +43,7 @@ public:
 
 private:
 
-  void (*_on_msg_fn_ptr) (Node*,string) = NULL;
+  void (*_on_msg_fn_ptr)(udp::server*, Node*, string) = NULL;
 
   // address structure for both udp_server and client
   struct sockaddr_in _udp_server_address,_client_address;
